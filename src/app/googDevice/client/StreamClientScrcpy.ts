@@ -107,7 +107,7 @@ export class StreamClientScrcpy
         if (query instanceof URLSearchParams) {
             const params = StreamClientScrcpy.parseParameters(query);
 
-            if (params.screenType && params.width && params.height) {
+            if (params.width && params.height) {
                 const cutomVideoSettings = new VideoSettings({
                     bitrate: 0.5,
                     bounds: new Size(params.width, params.height),

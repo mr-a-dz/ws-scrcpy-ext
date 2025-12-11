@@ -23,7 +23,6 @@ export class BaseClient<P extends ParamsBase, TE extends EventMap> extends Typed
             hostname: Util.parseStringEnv(query.get('hostname')),
             port: Util.parseIntEnv(query.get('port')),
             pathname: Util.parseStringEnv(query.get('pathname')),
-            screenType: Util.parseStringEnv(query.get('screenType')),
             width: Util.parseIntEnv(query.get('width')),
             height: Util.parseIntEnv(query.get('height')),
         };
