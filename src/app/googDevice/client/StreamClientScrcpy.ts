@@ -113,7 +113,7 @@ export class StreamClientScrcpy
                     bounds: new Size(params.width, params.height),
                     maxFps: 24,
                     iFrameInterval: 5,
-                    displayId: 0,
+                    displayId: params.displayId || 0,
                     codecOptions: undefined,
                     encoderName: undefined,
                 });
@@ -172,6 +172,7 @@ export class StreamClientScrcpy
             player: Util.parseString(params, 'player', true),
             udid: Util.parseString(params, 'udid', true),
             ws: Util.parseString(params, 'ws', true),
+            displayId: Util.parseInt(params, 'displayId'),
         };
     }
 
