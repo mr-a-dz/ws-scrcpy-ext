@@ -5,4 +5,7 @@ export interface ParamsBase {
     hostname?: string;
     port?: number;
     pathname?: string;
+    screenType?: string; // "cluster" | "media" | "windshield"
+    width?: number;
+    height?: number;
 }

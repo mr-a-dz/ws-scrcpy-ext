@@ -106,7 +106,21 @@ export class StreamClientScrcpy
     ): StreamClientScrcpy {
         if (query instanceof URLSearchParams) {
             const params = StreamClientScrcpy.parseParameters(query);
-            return new StreamClientScrcpy(params, streamReceiver, player, fitToScreen, videoSettings);
+
+            if (params.screenType && params.width && params.height) {
+                const cutomVideoSettings = new VideoSettings({
+                    bitrate: 0.5,
+                    bounds: new Size(params.width, params.height),
+                    maxFps: 24,
+                    iFrameInterval: 5,
+                    displayId: 0,
+                    codecOptions: undefined,
+                    encoderName: undefined,
+                });
+                return new StreamClientScrcpy(params, streamReceiver, player, fitToScreen, cutomVideoSettings);
+            } else {
+                return new StreamClientScrcpy(params, streamReceiver, player, fitToScreen, videoSettings);
+            }
         } else {
             return new StreamClientScrcpy(query, streamReceiver, player, fitToScreen, videoSettings);
         }
@@ -317,7 +331,7 @@ export class StreamClientScrcpy
         googMoreBox.setOnStop(stop);
         const googToolBox = GoogToolBox.createToolBox(udid, player, this, moreBox);
         this.controlButtons = googToolBox.getHolderElement();
-        deviceView.appendChild(this.controlButtons);
+        // deviceView.appendChild(this.controlButtons);
         const video = document.createElement('div');
         video.className = 'video';
         deviceView.appendChild(video);
